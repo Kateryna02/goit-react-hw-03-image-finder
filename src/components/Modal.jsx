@@ -27,7 +27,7 @@ class Modal extends React.Component {
     };
 
     handleImageClick = () => {
-        basicLightbox.create(`<img src="${this.props.largeImageURL}" alt="Large image">`).show();
+        basicLightbox.create(`<img src="${this.props.largeImageURL}" alt="LargeImage">`).show();
         console.log(this.handleImageClick);
     };
 
@@ -35,8 +35,8 @@ class Modal extends React.Component {
         return (
             <div className={s.Overlay} onClick={this.handleBackdropClick}>
                 <div className={s.Modal}>
-                    <button className="close-button" onClick={this.props.closeModal}>×</button>
-                    <img src={this.props.largeImageURL} alt='image' onClick={this.handleImageClick} />
+                    {/* <button className="close-button" onClick={this.props.closeModal}>×</button> */}
+                    <img src={this.props.largeImageURL} alt="LargeImage" onClick={this.handleImageClick} />
                 </div>
             </div>
         );

@@ -7,7 +7,7 @@ import ImageGallery from "./ImageGallery";
 import getImages from "./api";
 import CustomLoader from "./Loader";
 import LoadMoreButton from "./Button";
-import Modal from "./Modal"; 
+import Modal from "./Modal";
 
 class App extends Component {
   state = {
@@ -16,12 +16,29 @@ class App extends Component {
     perPage: 12,
     isLoading: false,
     query: '',
-    showModal: false, 
-    largeImageURL: '', 
+    showModal: false,
+    largeImageURL: '',
   };
 
   componentDidMount() {
+
     this.handleInitialLoad();
+  }
+  // componentDidUpdate(prevState) {
+  //   if (prevState.images !== this.state.images) {
+
+  //   }
+  // }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.query !== this.state.query || prevState.page !== this.state.page) {
+      this.setState({ isLoading: true });
+      const data = await this.fetchImages(this.state.query, this.state.page);
+      this.setState(prevState => ({
+        images: [...prevState.images, ...data],
+        isLoading: false
+      }));
+    }
   }
 
   handleInitialLoad = async () => {
@@ -34,17 +51,15 @@ class App extends Component {
   handleSearchSubmit = async (query) => {
     this.setState({ isLoading: true, query, images: [], page: 1 });
 
-    const data = await this.fetchImages(query);
-    this.setState({ images: data, isLoading: false });
+
   };
 
-  handleLoadMore = async () => {
-    const { query, page } = this.state;
-    this.setState({ isLoading: true });
 
-    const data = await this.fetchImages(query, page);
+
+  handleLoadMore = async () => {
+    const { page } = this.state;
+    this.setState({ isLoading: true });
     this.setState(prevState => ({
-      images: [...prevState.images, ...data],
       page: prevState.page + 1,
       isLoading: false
     }));
@@ -69,10 +84,10 @@ class App extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.handleSearchSubmit} />
-        <ImageGallery images={images} openModal={this.handleOpenModal} /> 
+        <ImageGallery images={images} openModal={this.handleOpenModal} />
         {isLoading && <CustomLoader />}
         <LoadMoreButton onClick={this.handleLoadMore} />
-        {showModal && <Modal largeImageURL={largeImageURL} closeModal={this.handleCloseModal} />} 
+        {showModal && <Modal largeImageURL={largeImageURL} closeModal={this.handleCloseModal} />}
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { BallTriangle } from 'react-loader-spinner';
 
 const CustomLoader = () => {
-    console.log('CustomLoader mounted');
+
     return (
         <BallTriangle
             height={100}
