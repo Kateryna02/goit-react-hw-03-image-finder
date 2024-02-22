@@ -39,7 +39,7 @@ class App extends Component {
   };
 
   handleLoadMore = async () => {
-    const { query, page, perPage, images } = this.state;
+    const { query, page } = this.state;
     this.setState({ isLoading: true });
 
     const data = await this.fetchImages(query, page);

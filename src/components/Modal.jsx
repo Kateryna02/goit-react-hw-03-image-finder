@@ -36,7 +36,7 @@ class Modal extends React.Component {
             <div className={s.Overlay} onClick={this.handleBackdropClick}>
                 <div className={s.Modal}>
                     <button className="close-button" onClick={this.props.closeModal}>×</button>
-                    <img src={this.props.largeImageURL}  onClick={this.handleImageClick} />
+                    <img src={this.props.largeImageURL} alt='image' onClick={this.handleImageClick} />
                 </div>
             </div>
         );
