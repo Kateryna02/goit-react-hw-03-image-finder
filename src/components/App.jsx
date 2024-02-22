@@ -57,7 +57,6 @@ class App extends Component {
 
 
   handleLoadMore = async () => {
-    const { page } = this.state;
     this.setState({ isLoading: true });
     this.setState(prevState => ({
       page: prevState.page + 1,
