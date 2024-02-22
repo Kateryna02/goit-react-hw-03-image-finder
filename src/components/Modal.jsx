@@ -2,7 +2,7 @@
 
 import React from 'react';
 import * as basicLightbox from 'basiclightbox';
-
+import s from '../Style.module.css'
 class Modal extends React.Component {
     componentDidMount() {
         document.body.style.overflowY = 'hidden';
@@ -33,10 +33,10 @@ class Modal extends React.Component {
 
     render() {
         return (
-            <div className="modal-wrapper" onClick={this.handleBackdropClick}>
-                <div className="modal-content">
+            <div className={s.Overlay} onClick={this.handleBackdropClick}>
+                <div className={s.Modal}>
                     <button className="close-button" onClick={this.props.closeModal}>×</button>
-                    <img src={this.props.largeImageURL} alt="Large image" onClick={this.handleImageClick} />
+                    <img src={this.props.largeImageURL}  onClick={this.handleImageClick} />
                 </div>
             </div>
         );

@@ -9,7 +9,7 @@ const ImageGallery = ({ images, openModal }) => {
         <ul className={s.ImageGallery}>
             {images.map(image => (
                 <ImageGalleryItem
-                    key={image.id}
+                key={image.id}
                     image={image}
                     openModal={() => openModal(image.largeImageURL)} 
                 />
